@@ -1,24 +1,23 @@
+import React, {useState} from "react";
 import logo from './logo.svg';
 import './App.css';
+import LoanName from "./Components/LoanName";
+import AmountBorrowed from "./Components/AmountBorrowed";
+import DisbursementDate from "./Components/DisbursementDate";
+import InterestRate from "./Components/InterestRate";
+import FutureDate from "./Components/FutureDate";
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <h1>MintyShark 🦈🔮</h1>
+      <LoanName />
+      <AmountBorrowed />
+      <DisbursementDate />
+      <InterestRate />
+      <FutureDate />
+    </main>
   );
 }
 
