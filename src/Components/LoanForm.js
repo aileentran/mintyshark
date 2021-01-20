@@ -32,7 +32,8 @@ class LoanForm extends Component {
             onChange={this.handleChange}
           />
 
-          // TODO: currency format
+
+          {/* TODO: currency format */}
           <input
             type="text"
             name="amtBorrowed"
@@ -41,7 +42,7 @@ class LoanForm extends Component {
             onChange={this.handleChange}
           />
 
-          // TODO: label date
+          {/* TODO: label date */}
           <input
             type="date"
             name="disbursementDate"
@@ -49,7 +50,7 @@ class LoanForm extends Component {
             onChange={this.handleChange}
           />
 
-          // TODO: Percentage format
+          {/* TODO: Percentage format */}
           <input
             type="text"
             name="interestRate"
@@ -58,11 +59,10 @@ class LoanForm extends Component {
             onChange={this.handleChange}
           />
 
-          // TODO: label date. consider more clear variable name
+           {/* TODO: label date. consider more clear variable name. placeholder today's date?*/}
           <input
             type="date"
             name="futureDate"
-            // TODO: placeholder today's date?
             value={this.state.futureDate}
             onChange={this.handleChange}
           />
@@ -75,7 +75,7 @@ class LoanForm extends Component {
           <p>Future Date 🔮: {this.state.futureDate}</p>
           <p>A snapshot in the future: graduation date, 5 years in the future, 10 years, etc!</p>
         </div>
-        // TODO: calulations and return values
+        {/* TODO: calulations and return values */}
       </div>
     )
   }
