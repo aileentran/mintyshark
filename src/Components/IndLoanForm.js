@@ -8,7 +8,9 @@ class IndLoanForm extends Component {
       amtBorrowed: "",
       disbursementDate: "",
       interestRate: "",
-      futureDate:""
+      futureDate: "",
+      loanAccrued: 0,
+      loanTotal: 0
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -18,8 +20,6 @@ class IndLoanForm extends Component {
   // Convert interest number into actual num NOPE! every input / 100
   handleChange(event) {
     const {name, value} = event.target
-    name === "amtBorrowed" || name === "interestRate" ?
-    this.setState({ [name]: Number(value) }) :
     this.setState({ [name] : value })
   }
 
@@ -33,11 +33,15 @@ class IndLoanForm extends Component {
     const diffInDays = diffInTime / (1000 * 3600 * 24)
 
     //  convert interest rate into number by /100
-    const dailyInterest = this.state.interestRate / 365 / 100
+    const dailyInterest = Number(this.state.interestRate) / 365 / 100
 
-    const amtAccrued = dailyInterest * diffInDays * this.state.amtBorrowed
+    const amtAccrued = dailyInterest * diffInDays * Number(this.state.amtBorrowed)
 
-    const total = amtAccrued + this.state.amtBorrowed
+    const total = amtAccrued + Number(this.state.amtBorrowed)
+    this.setState({
+      loanAccrued: amtAccrued,
+      loanTotal : total
+    })
   }
 
   render() {
@@ -51,7 +55,6 @@ class IndLoanForm extends Component {
             value={this.state.loanName}
             onChange={this.handleChange}
           />
-
 
           {/* TODO: currency format */}
           <input
@@ -91,20 +94,22 @@ class IndLoanForm extends Component {
             />
           </label>
           <br />
-          <button>Calculate!</button>
+          <button>Calculate Individual Loan</button>
         </form>
 
         <div className="input-values">
           <p>Loan name: {this.state.loanName}</p>
-          <p>Amount Borrowed: {typeof this.state.amtBorrowed}</p>
+          <p>Amount Borrowed: {this.state.amtBorrowed}</p>
           <p>Disbursement Date: {this.state.disbursementDate}</p>
-          <p>Interest Rate: {typeof this.state.interestRate} {this.state.interestRate}</p>
+          <p>Interest Rate: {this.state.interestRate}</p>
           <p>Future Date 🔮: {this.state.futureDate}</p>
           <p>A snapshot in the future: graduation date, 5 years in the future, 10 years, etc!</p>
         </div>
 
         {/* TODO: calulations and return values */}
         <div className="calculations">
+          <p>Loan Accrual: {this.state.loanAccrued}</p>
+          <p>Total cost of {this.state.loanName}: {this.state.loanTotal}</p>
         </div>
       </div>
     )
