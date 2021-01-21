@@ -1,10 +1,10 @@
 import React from "react"
-import IndLoan from "./IndLoan"
+import IndLoanForm from "./IndLoanForm"
 
 function LoanForm() {
   return(
     <div className="loan-form">
-      <IndLoan />
+      <IndLoanForm />
     </div>
   )
 }

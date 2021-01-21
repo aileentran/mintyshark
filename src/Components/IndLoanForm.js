@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 
-class IndLoan extends Component {
+class IndLoanForm extends Component {
   constructor() {
     super()
     this.state = {
@@ -111,4 +111,4 @@ class IndLoan extends Component {
   }
 }
 
-export default IndLoan
+export default IndLoanForm
