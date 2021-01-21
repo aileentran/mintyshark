@@ -14,6 +14,8 @@ class LoanForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  // TODO: convert necessary states into nums?
+  // Convert interest number into actual num?
   handleChange(event) {
     const {name, value} = event.target
     this.setState(
@@ -21,8 +23,10 @@ class LoanForm extends Component {
     )
   }
 
+  // TODO: sum all loans
   handleSubmit(event){
     event.preventDefault()
+    // Calculations for INDIVIDUAL loans
     const disbursementDate = new Date(this.state.disbursementDate)
     const futureDate = new Date(this.state.futureDate)
     const diffInTime = futureDate.getTime() - disbursementDate.getTime()
