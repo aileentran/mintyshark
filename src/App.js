@@ -3,9 +3,6 @@ import './App.css';
 import LoanForm from "./Components/LoanForm";
 
 function App() {
-  const [ name, setName] = useState("")
-
-
 
   return (
     <main>

@@ -8,7 +8,7 @@ class IndLoanForm extends Component {
       amtBorrowed: "",
       disbursementDate: "",
       interestRate: "",
-      futureDate: "",
+      gradDate: "",
       loanAccrued: 0,
       loanTotal: 0
     }
@@ -16,20 +16,17 @@ class IndLoanForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  // TODO: convert necessary states into nums?
-  // Convert interest number into actual num NOPE! every input / 100
   handleChange(event) {
     const {name, value} = event.target
     this.setState({ [name] : value })
   }
 
-  // TODO: sum all loans
   handleSubmit(event){
     event.preventDefault()
     // Calculations for INDIVIDUAL loans
     const disbursementDate = new Date(this.state.disbursementDate)
-    const futureDate = new Date(this.state.futureDate)
-    const diffInTime = futureDate.getTime() - disbursementDate.getTime()
+    const gradDate = new Date(this.state.gradDate)
+    const diffInTime = gradDate.getTime() - disbursementDate.getTime()
     const diffInDays = diffInTime / (1000 * 3600 * 24)
 
     //  convert interest rate into number by /100
@@ -38,6 +35,7 @@ class IndLoanForm extends Component {
     const amtAccrued = dailyInterest * diffInDays * Number(this.state.amtBorrowed)
 
     const total = amtAccrued + Number(this.state.amtBorrowed)
+
     this.setState({
       loanAccrued: amtAccrued,
       loanTotal : total
@@ -85,16 +83,19 @@ class IndLoanForm extends Component {
           />
 
           <label>
-            Future Date
+            Graduation Date
             <input
               type="date"
-              name="futureDate"
-              value={this.state.futureDate}
+              name="gradDate"
+              value={this.state.gradDate}
               onChange={this.handleChange}
             />
           </label>
-          <br />
-          <button>Calculate Individual Loan</button>
+          <button>➕</button>
+          <button>🗑</button>
+          {/* TODO: remove calculating individual loans */}
+          <button>Calculate individual loan</button>
+          {/* <input type="submit" value="Submit" /> */}
         </form>
 
         <div className="input-values">
@@ -102,11 +103,10 @@ class IndLoanForm extends Component {
           <p>Amount Borrowed: {this.state.amtBorrowed}</p>
           <p>Disbursement Date: {this.state.disbursementDate}</p>
           <p>Interest Rate: {this.state.interestRate}</p>
-          <p>Future Date 🔮: {this.state.futureDate}</p>
+          <p>Graduation Date 🔮: {this.state.gradDate}</p>
           <p>A snapshot in the future: graduation date, 5 years in the future, 10 years, etc!</p>
         </div>
 
-        {/* TODO: calulations and return values */}
         <div className="calculations">
           <p>Loan Accrual: {this.state.loanAccrued}</p>
           <p>Total cost of {this.state.loanName}: {this.state.loanTotal}</p>
