@@ -10,15 +10,41 @@ class IndLoanForm extends Component {
       interestRate: "",
       gradDate: "",
       loanAccrued: 0,
-      loanTotal: 0
+      loanTotal: 0,
+      subLoans: [{
+        loanName: "",
+        amtBorrowed: "",
+        disbursementDate: "",
+        interestRate: "",
+        gradDate: "",
+        loanAccrued: 0,
+        loanTotal: 0
+      }]
     }
     this.handleChange = this.handleChange.bind(this)
+    this.addSubLoan = this.addSubLoan.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange(event) {
     const {name, value} = event.target
     this.setState({ [name] : value })
+  }
+
+  addSubLoan(event) {
+    this.setState((prevState) => ({
+      subLoans:[...prevState.subLoans,
+        {
+          loanName: "",
+          amtBorrowed: "",
+          disbursementDate: "",
+          interestRate: "",
+          gradDate: "",
+          loanAccrued: 0,
+          loanTotal: 0
+        }
+      ]
+    }))
   }
 
   handleSubmit(event){
@@ -43,6 +69,7 @@ class IndLoanForm extends Component {
   }
 
   render() {
+    let {subLoans} = this.state
     return (
       <div>
         <form className="loan-form" onSubmit={this.handleSubmit}>
@@ -63,15 +90,13 @@ class IndLoanForm extends Component {
             onChange={this.handleChange}
           />
 
-          <label>
-            Disbursement Date
+          <label>Disbursement Date</label>
             <input
               type="date"
               name="disbursementDate"
               value={this.state.disbursementDate}
               onChange={this.handleChange}
             />
-          </label>
 
           {/* TODO: Percentage format */}
           <input
@@ -82,21 +107,74 @@ class IndLoanForm extends Component {
             onChange={this.handleChange}
           />
 
-          <label>
-            Graduation Date
+          <button onClick={this.addSubLoan}>➕</button>
+          <button>🗑</button>
+          {/* TODO: remove calculating individual loans */}
+          <button>Calculate individual loan</button>
+          {/* <input type="submit" value="Submit" /> */}
+
+
+          {/* TODO: set up separate component in SubLoan */}
+          {
+            subLoans.map((val, idx) =>{
+              // set up indivdual ids for all inputs
+              let subLoanId = `${this.state.loanName} - ${idx}`
+              let amtBorrowedId = `amtBorrowed-${idx}`
+              let disbursementDateId = `disbursementDate-${idx}`
+              let interestRateId = `interestRate-${idx}`
+              return (
+                <div key={idx}>
+                  <input
+                    type="text"
+                    name="loanName"
+                    placeholder="Loan Name"
+                    value={this.state.loanName}
+                    onChange={this.handleChange}
+                  />
+
+                  {/* TODO: currency format */}
+                  <input
+                    type="text"
+                    name="amtBorrowed"
+                    placeholder="Amount Borrowed"
+                    value={this.state.amtBorrowed}
+                    onChange={this.handleChange}
+                  />
+
+                  <label>Disbursement Date</label>
+                    <input
+                      type="date"
+                      name="disbursementDate"
+                      value={this.state.disbursementDate}
+                      onChange={this.handleChange}
+                    />
+
+                  {/* TODO: Percentage format */}
+                  <input
+                    type="text"
+                    name="interestRate"
+                    placeholder="Interest Rate"
+                    value={this.state.interestRate}
+                    onChange={this.handleChange}
+                  />
+                  <button onClick={this.addSubLoan}>➕</button>
+                  <button>🗑</button>
+                  {/* TODO: remove calculating individual loans */}
+                  <button>Calculate individual loan</button>
+                </div>
+            )
+          })
+          }
+          <br />
+          <label>Graduation Date</label>
             <input
               type="date"
               name="gradDate"
               value={this.state.gradDate}
               onChange={this.handleChange}
             />
-          </label>
-          <button>➕</button>
-          <button>🗑</button>
-          {/* TODO: remove calculating individual loans */}
-          <button>Calculate individual loan</button>
-          {/* <input type="submit" value="Submit" /> */}
         </form>
+
 
         <div className="input-values">
           <p>Loan name: {this.state.loanName}</p>
