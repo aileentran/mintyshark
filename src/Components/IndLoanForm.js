@@ -53,6 +53,8 @@ class IndLoanForm extends Component {
 
   handleSubmit(event){
     event.preventDefault()
+    // TODO: consider isSubsidized!
+    
     // Calculations for INDIVIDUAL loans
     const disbursementDate = new Date(this.state.disbursementDate)
     const gradDate = new Date(this.state.gradDate)
@@ -134,6 +136,7 @@ class IndLoanForm extends Component {
               value={this.state.gradDate}
               onChange={this.handleChange}
             />
+            {/*TODO: add payment plan*/}
         </form>
 
 
