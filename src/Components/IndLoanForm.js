@@ -9,6 +9,7 @@ class IndLoanForm extends Component {
       disbursementDate: "",
       interestRate: "",
       gradDate: "",
+      paymentPlan: "",
       loanAccrued: 0,
       loanTotal: 0,
       subLoans: [{
@@ -134,6 +135,14 @@ class IndLoanForm extends Component {
               onChange={this.handleChange}
             />
             {/*TODO: add payment plan*/}
+            <label>Payment Plan</label>
+            <input
+              type="text"
+              name="paymentPlan"
+              placeholder="10 yrs? 20 yrs? 30 yrs?"
+              value={this.state.paymentPlan}
+              onChange={this.handleChange}
+            />
         </form>
 
 
@@ -145,6 +154,7 @@ class IndLoanForm extends Component {
           <p>Subsidized? {this.state.isSubsidized}</p>
           <p>Graduation Date 🔮: {this.state.gradDate}</p>
           <p>A snapshot in the future: graduation date, 5 years in the future, 10 years, etc!</p>
+          <p>Payment Plan 🔮: {this.state.paymentPlan}</p>
         </div>
 
         <div className="calculations">
