@@ -31,8 +31,7 @@ class IndLoanForm extends Component {
     const {name, value, type, checked} = event.target
     type === "checkbox" ? this.setState({ [name] : checked }) : this.setState({ [name] : value })
   }
-  // TODO: current changes affect all new individual loans.
-  // TODO: fix this
+  // TODO: Fix this! current changes affect all new individual loans.
   // NOTE: moved dynamic lines to SubLoan.js
   addSubLoan(event) {
     this.setState((prevState) => ({
@@ -53,8 +52,6 @@ class IndLoanForm extends Component {
 
   handleSubmit(event){
     event.preventDefault()
-    // TODO: consider isSubsidized!
-    
     // Calculations for INDIVIDUAL loans
     const disbursementDate = new Date(this.state.disbursementDate)
     const gradDate = new Date(this.state.gradDate)
@@ -64,7 +61,7 @@ class IndLoanForm extends Component {
     //  convert interest rate into number by /100
     const dailyInterest = Number(this.state.interestRate) / 365 / 100
 
-    const amtAccrued = dailyInterest * diffInDays * Number(this.state.amtBorrowed)
+    const amtAccrued = this.state.isSubsidized ? 0 : dailyInterest * diffInDays * Number(this.state.amtBorrowed)
 
     const total = amtAccrued + Number(this.state.amtBorrowed)
 
