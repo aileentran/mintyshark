@@ -33,6 +33,7 @@ class IndLoanForm extends Component {
   }
   // TODO: current changes affect all new individual loans.
   // TODO: fix this
+  // NOTE: moved dynamic lines to SubLoan.js
   addSubLoan(event) {
     this.setState((prevState) => ({
       subLoans:[...prevState.subLoans,
