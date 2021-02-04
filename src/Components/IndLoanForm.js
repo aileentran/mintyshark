@@ -29,7 +29,7 @@ class IndLoanForm extends Component {
 
   handleChange(event) {
     const {name, value, type, checked} = event.target
-    type === "checked" ? this.setState({ [name] : checked }) : this.setState({ [name] : value })
+    type === "checkbox" ? this.setState({ [name] : checked }) : this.setState({ [name] : value })
   }
   // TODO: current changes affect all new individual loans.
   // TODO: fix this
@@ -142,6 +142,7 @@ class IndLoanForm extends Component {
           <p>Amount Borrowed: {this.state.amtBorrowed}</p>
           <p>Disbursement Date: {this.state.disbursementDate}</p>
           <p>Interest Rate: {this.state.interestRate}</p>
+          <p>Subsidized? {this.state.isSubsidized}</p>
           <p>Graduation Date 🔮: {this.state.gradDate}</p>
           <p>A snapshot in the future: graduation date, 5 years in the future, 10 years, etc!</p>
         </div>
