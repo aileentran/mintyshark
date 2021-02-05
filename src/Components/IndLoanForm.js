@@ -120,7 +120,7 @@ class IndLoanForm extends Component {
             /> Subsidized?
           </label>
 
-          <button onClick={this.addSubLoan}>➕</button>
+          {/*<button onClick={this.addSubLoan}>➕</button>*/}
           <button>🗑</button>
           {/* TODO: remove calculating individual loans */}
           <button>Calculate individual loan</button>
