@@ -33,7 +33,7 @@ class IndLoanForm extends Component {
     type === "checkbox" ? this.setState({ [name] : checked }) : this.setState({ [name] : value })
   }
   // TODO: Fix this! current changes affect all new individual loans.
-  // NOTE: moved dynamic lines to SubLoan.js
+  // NOTE: moved previous, problematic dynamic lines to SubLoan.js
   addSubLoan(event) {
     this.setState((prevState) => ({
       subLoans:[...prevState.subLoans,
@@ -125,24 +125,7 @@ class IndLoanForm extends Component {
           {/* TODO: remove calculating individual loans */}
           <button>Calculate individual loan</button>
           {/* <input type="submit" value="Submit" /> */}
-
           <br />
-          <label>Graduation Date</label>
-            <input
-              type="date"
-              name="gradDate"
-              value={this.state.gradDate}
-              onChange={this.handleChange}
-            />
-            {/*TODO: add payment plan*/}
-            <label>Payment Plan</label>
-            <input
-              type="text"
-              name="paymentPlan"
-              placeholder="10 yrs? 20 yrs? 30 yrs?"
-              value={this.state.paymentPlan}
-              onChange={this.handleChange}
-            />
         </form>
 
 
@@ -152,9 +135,6 @@ class IndLoanForm extends Component {
           <p>Disbursement Date: {this.state.disbursementDate}</p>
           <p>Interest Rate: {this.state.interestRate}</p>
           <p>Subsidized? {this.state.isSubsidized}</p>
-          <p>Graduation Date 🔮: {this.state.gradDate}</p>
-          <p>A snapshot in the future: graduation date, 5 years in the future, 10 years, etc!</p>
-          <p>Payment Plan 🔮: {this.state.paymentPlan}</p>
         </div>
 
         <div className="calculations">
