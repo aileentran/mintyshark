@@ -5,15 +5,6 @@ class LoanForm extends Component {
   constructor() {
     super()
     this.state = {
-      loans: [{
-        loanName: "",
-        amtBorrowed: "",
-        disbursementDate: "",
-        interestRate: "" ,
-        isSubsidized: "",
-        loanAccrued: 0,
-        loanTotal: 0
-      }],
       gradDate: "",
       paymentPlan: ""
     }
@@ -24,11 +15,12 @@ class LoanForm extends Component {
     const {name, value} = event.target
     this.setState({ [name] : value })
   }
+
   render() {
     return(
       <div className="loan-form">
         <IndLoanForm />
-        {/*POTENTIAL RESOURCE TO ADD FORMS: https://dev.to/email2vimalraj/dynamic-form-fields-using-react-35ci*/}
+        {/* POTENTIAL RESOURCE TO ADD FORMS: https://dev.to/email2vimalraj/dynamic-form-fields-using-react-35ci */}
         {/* TODO: include buttons - add loans, calculate */}
         <label>Graduation Date</label>
           <input

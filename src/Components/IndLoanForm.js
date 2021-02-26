@@ -134,7 +134,7 @@ class IndLoanForm extends Component {
           <p>Amount Borrowed: {this.state.amtBorrowed}</p>
           <p>Disbursement Date: {this.state.disbursementDate}</p>
           <p>Interest Rate: {this.state.interestRate}</p>
-          <p>Subsidized? {this.state.isSubsidized}</p>
+          {console.log(this.state.isSubsidized)}
         </div>
 
         <div className="calculations">
