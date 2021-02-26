@@ -29,6 +29,8 @@ class LoanForm extends Component {
     let values = [...this.state.values]
     values[i].value = event.target.value
     this.setState({ values })
+
+    // TODO: able to update gradDate and paymentPlan in state
     // original handleChange below
     // const {name, value} = event.target
     // this.setState({ [name] : value })
@@ -48,6 +50,7 @@ class LoanForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    // TODO: work on calculations 
   }
 
   render() {
