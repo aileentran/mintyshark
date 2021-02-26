@@ -5,39 +5,98 @@ class LoanForm extends Component {
   constructor() {
     super()
     this.state = {
+      values: [{ values: null }],
       gradDate: "",
       paymentPlan: ""
     }
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(event) {
-    const {name, value} = event.target
-    this.setState({ [name] : value })
+  createUI(){
+    return this.state.values.map((ele, i) => (
+      <div key={i}>
+        <IndLoanForm />
+        <input
+          type="button"
+          value="remove"
+          onClick={this.removeClick.bind(this, i)}
+        />
+      </div>
+    ))
+  }
+
+  handleChange(i, event) {
+    let values = [...this.state.values]
+    values[i].value = event.target.value
+    this.setState({ values })
+    // original handleChange below
+    // const {name, value} = event.target
+    // this.setState({ [name] : value })
+  }
+
+  addClick() {
+    this.setState(prevState => ({
+      values: [...prevState.values, { values: null }]
+    }))
+  }
+
+  removeClick(i) {
+    let values = [...this.state.values]
+    values.splice(i, 1)
+    this.setState({ values })
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
   }
 
   render() {
     return(
       <div className="loan-form">
-        <IndLoanForm />
-        {/* POTENTIAL RESOURCE TO ADD FORMS: https://dev.to/email2vimalraj/dynamic-form-fields-using-react-35ci */}
-        {/* TODO: include buttons - add loans, calculate */}
-        <label>Graduation Date</label>
+        <form onSubmit={this.handleSubmit}>
+          {this.state.values.map((ele, i) => (
+            <div key={i}>
+              <IndLoanForm />
+              <input
+                type="button"
+                value="remove"
+                onClick={this.removeClick.bind(this, i)}
+              />
+            </div>
+          ))}
+
           <input
-            type="date"
-            name="gradDate"
-            value={this.state.gradDate}
-            onChange={this.handleChange}
+            type="button"
+            value="addLoan"
+            onClick={() => this.addClick()}
           />
 
-          <label>Payment Plan</label>
+          <label>Graduation Date</label>
+            <input
+              type="date"
+              name="gradDate"
+              value={this.state.gradDate}
+              onChange={this.handleChange}
+            />
+
+            <label>Payment Plan</label>
+            <input
+              type="text"
+              name="paymentPlan"
+              placeholder="10 yrs? 20 yrs? 30 yrs?"
+              value={this.state.paymentPlan}
+              onChange={this.handleChange}
+            />
+
           <input
-            type="text"
-            name="paymentPlan"
-            placeholder="10 yrs? 20 yrs? 30 yrs?"
-            value={this.state.paymentPlan}
-            onChange={this.handleChange}
+            type="submit"
+            value="Submit"
           />
+
+        </form>
+        {/* POTENTIAL RESOURCE TO ADD FORMS: https://dev.to/email2vimalraj/dynamic-form-fields-using-react-35ci */}
+        {/* TODO: include buttons - add loans, calculate */}
+
 
         {/* TODO for calculations: consider 6 months after grad for subsidized loans!*/}
 

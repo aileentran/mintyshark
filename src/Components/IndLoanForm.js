@@ -121,7 +121,7 @@ class IndLoanForm extends Component {
           </label>
 
           {/*<button onClick={this.addSubLoan}>➕</button>*/}
-          <button>🗑</button>
+          {/* <button>🗑</button> */}
           {/* TODO: remove calculating individual loans */}
           <button>Calculate individual loan</button>
           {/* <input type="submit" value="Submit" /> */}
