@@ -11,44 +11,15 @@ class IndLoanForm extends Component {
       gradDate: "",
       paymentPlan: "",
       loanAccrued: 0,
-      loanTotal: 0,
-      subLoans: [{
-        loanName: "",
-        amtBorrowed: "",
-        disbursementDate: "",
-        interestRate: "",
-        isSubsidized: false,
-        gradDate: "",
-        loanAccrued: 0,
-        loanTotal: 0
-      }]
+      loanTotal: 0
     }
     this.handleChange = this.handleChange.bind(this)
-    this.addSubLoan = this.addSubLoan.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange(event) {
     const {name, value, type, checked} = event.target
     type === "checkbox" ? this.setState({ [name] : checked }) : this.setState({ [name] : value })
-  }
-  // TODO: Fix this! current changes affect all new individual loans.
-  // NOTE: moved previous, problematic dynamic lines to SubLoan.js
-  addSubLoan(event) {
-    this.setState((prevState) => ({
-      subLoans:[...prevState.subLoans,
-        {
-          loanName: "",
-          amtBorrowed: "",
-          disbursementDate: "",
-          interestRate: "",
-          isSubsidized: false,
-          gradDate: "",
-          loanAccrued: 0,
-          loanTotal: 0
-        }
-      ]
-    }))
   }
 
   handleSubmit(event){
@@ -73,7 +44,6 @@ class IndLoanForm extends Component {
   }
 
   render() {
-    let {subLoans} = this.state
     return (
       <div>
         <form className="loan-form" onSubmit={this.handleSubmit}>
@@ -120,11 +90,8 @@ class IndLoanForm extends Component {
             /> Subsidized?
           </label>
 
-          {/*<button onClick={this.addSubLoan}>➕</button>*/}
-          {/* <button>🗑</button> */}
           {/* TODO: remove calculating individual loans */}
           <button>Calculate individual loan</button>
-          {/* <input type="submit" value="Submit" /> */}
           <br />
         </form>
 
