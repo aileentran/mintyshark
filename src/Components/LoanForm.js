@@ -1,78 +1,32 @@
 import React, {Component} from "react"
-import IndLoanForm from "./IndLoanForm"
+import AddAndDeleteLoans from "./AddAndDeleteLoans"
 
 class LoanForm extends Component {
   constructor() {
     super()
     this.state = {
-      values: [{ values: null }],
       gradDate: "",
       paymentPlan: ""
     }
     this.handleChange = this.handleChange.bind(this)
   }
 
-  createUI(){
-    return this.state.values.map((ele, i) => (
-      <div key={i}>
-        <IndLoanForm />
-        <input
-          type="button"
-          value="remove"
-          onClick={this.removeClick.bind(this, i)}
-        />
-      </div>
-    ))
-  }
-
-  handleChange(i, event) {
-    let values = [...this.state.values]
-    values[i].value = event.target.value
-    this.setState({ values })
-
-    // TODO: able to update gradDate and paymentPlan in state
-    // original handleChange below
-    // const {name, value} = event.target
-    // this.setState({ [name] : value })
-  }
-
-  addClick() {
-    this.setState(prevState => ({
-      values: [...prevState.values, { values: null }]
-    }))
-  }
-
-  removeClick(i) {
-    let values = [...this.state.values]
-    values.splice(i, 1)
-    this.setState({ values })
+  handleChange(event) {
+    const {name, value} = event.target
+    this.setState({ [name] : value })
   }
 
   handleSubmit(event) {
     event.preventDefault()
-    // TODO: work on calculations 
+    // TODO: work on calculations
   }
 
   render() {
     return(
       <div className="loan-form">
         <form onSubmit={this.handleSubmit}>
-          {this.state.values.map((ele, i) => (
-            <div key={i}>
-              <IndLoanForm />
-              <input
-                type="button"
-                value="remove"
-                onClick={this.removeClick.bind(this, i)}
-              />
-            </div>
-          ))}
 
-          <input
-            type="button"
-            value="addLoan"
-            onClick={() => this.addClick()}
-          />
+          <AddAndDeleteLoans />
 
           <label>Graduation Date</label>
             <input
@@ -99,7 +53,6 @@ class LoanForm extends Component {
         </form>
         {/* POTENTIAL RESOURCE TO ADD FORMS: https://dev.to/email2vimalraj/dynamic-form-fields-using-react-35ci */}
         {/* TODO: include buttons - add loans, calculate */}
-
 
         {/* TODO for calculations: consider 6 months after grad for subsidized loans!*/}
 
