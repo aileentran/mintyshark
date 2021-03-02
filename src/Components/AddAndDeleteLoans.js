@@ -5,8 +5,9 @@ class AddAndDeleteLoans extends Component {
   constructor() {
     super()
     this.state = {
-      values: [{ values: null }],
+      values: [{ values: null }]
     }
+    this.handleChange = this.handleChange.bind(this)
   }
 
   createUI(){
@@ -34,6 +35,7 @@ class AddAndDeleteLoans extends Component {
     }))
   }
 
+// TODO: Remove specific loan line!
   removeClick(i) {
     let values = [...this.state.values]
     values.splice(i, 1)
@@ -47,7 +49,6 @@ class AddAndDeleteLoans extends Component {
           <div key={i}>
             <IndLoanForm />
             <input
-              name="loanLine"
               type="button"
               value="remove"
               onClick={this.removeClick.bind(this, i)}
@@ -56,7 +57,6 @@ class AddAndDeleteLoans extends Component {
         ))}
 
         <input
-          name="loanLine"
           type="button"
           value="addLoan"
           onClick={() => this.addClick()}
