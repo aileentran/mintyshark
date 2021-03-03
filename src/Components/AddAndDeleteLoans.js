@@ -51,7 +51,7 @@ class AddAndDeleteLoans extends Component {
             <input
               type="button"
               value="remove"
-              onClick={this.removeClick.bind(this, i)}
+              onClick={() => this.removeClick(i)}
             />
           </div>
         ))}
