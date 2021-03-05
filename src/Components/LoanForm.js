@@ -1,19 +1,43 @@
 import React, {Component} from "react"
+import IndLoanForm from "./IndLoanForm"
 import AddAndDeleteLoans from "./AddAndDeleteLoans"
+import GradPlan from "./GradPlan"
+
+function makeid(length) {
+   var result           = '';
+   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+   var charactersLength = characters.length;
+   for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
 
 class LoanForm extends Component {
   constructor() {
     super()
     this.state = {
-      gradDate: "",
-      paymentPlan: ""
+      values: [{ values: makeid(5) }]
     }
-    this.handleChange = this.handleChange.bind(this)
+    // this.handleChange = this.handleChange.bind(this)
+
   }
 
-  handleChange(event) {
-    const {name, value} = event.target
-    this.setState({ [name] : value })
+  // handleChange(i, event) {
+  //   let values = [...this.state.values]
+  //   values[i].value = event.target.value
+  //   this.setState({ values })
+  // }
+
+  addClick() {
+    let newId = { values: makeid(5) }
+    this.setState(prevState => ({ values: [...prevState.values, newId] }))
+  }
+
+  removeClick(i) {
+    let values = [...this.state.values]
+    values.splice(i, 1)
+    this.setState({ values })
   }
 
   handleSubmit(event) {
@@ -25,26 +49,25 @@ class LoanForm extends Component {
     return(
       <div className="loan-form">
         <form onSubmit={this.handleSubmit}>
+          {this.state.values.map((ele, i) => (
+            <div key={i}>
+              <IndLoanForm />
+              <p>{ele.values}</p>
+              <input
+                type="button"
+                value="remove"
+                onClick={() => this.removeClick(i)}
+              />
+            </div>
+          ))}
 
-          <AddAndDeleteLoans />
+          <input
+            type="button"
+            value="addLoan"
+            onClick={() => this.addClick()}
+          />
 
-          <label>Graduation Date</label>
-            <input
-              type="date"
-              name="gradDate"
-              value={this.state.gradDate}
-              onChange={this.handleChange}
-            />
-
-            <label>Payment Plan</label>
-            <input
-              type="text"
-              name="paymentPlan"
-              placeholder="10 yrs? 20 yrs? 30 yrs?"
-              value={this.state.paymentPlan}
-              onChange={this.handleChange}
-            />
-
+          <GradPlan />
           <input
             type="submit"
             value="Submit"
@@ -56,11 +79,7 @@ class LoanForm extends Component {
 
         {/* TODO for calculations: consider 6 months after grad for subsidized loans!*/}
 
-        <div className="input-values">
-          <p>Graduation Date 🔮: {this.state.gradDate}</p>
-          <p>A snapshot in the future: graduation date, 5 years in the future, 10 years, etc!</p>
-          <p>Payment Plan 🔮: {this.state.paymentPlan}</p>
-        </div>
+
       </div>
     )
   }
