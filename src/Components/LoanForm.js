@@ -14,20 +14,15 @@ function makeid(length) {
 }
 
 class LoanForm extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       values: [{ values: makeid(5) }],
-      loanName: "",
-      amtBorrowed: "",
-      disbursementDate: "",
-      interestRate: "",
+      totalAccrued: 0,
+      total: 0,
       gradDate: "",
       paymentPlan: "",
-      loanAccrued: 0,
-      loanTotal: 0,
-      gradDate: "",
-      paymentPlan: ""
+      monthlyCost: 0
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -53,27 +48,6 @@ class LoanForm extends Component {
     event.preventDefault()
     // TODO: work on calculations
   }
-
-  // handleSubmit(event){
-  //   event.preventDefault()
-  //   // Calculations for INDIVIDUAL loans
-  //   const disbursementDate = new Date(this.state.disbursementDate)
-  //   const gradDate = new Date(this.state.gradDate)
-  //   const diffInTime = gradDate.getTime() - disbursementDate.getTime()
-  //   const diffInDays = diffInTime / (1000 * 3600 * 24)
-  //
-  //   //  convert interest rate into number by /100
-  //   const dailyInterest = Number(this.state.interestRate) / 365 / 100
-  //
-  //   const amtAccrued = this.state.isSubsidized ? 0 : dailyInterest * diffInDays * Number(this.state.amtBorrowed)
-  //
-  //   const total = amtAccrued + Number(this.state.amtBorrowed)
-  //
-  //   this.setState({
-  //     loanAccrued: amtAccrued,
-  //     loanTotal : total
-  //   })
-  // }
 
   render() {
     return(
