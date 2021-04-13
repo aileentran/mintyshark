@@ -36,12 +36,15 @@ class LoanForm extends Component {
   addClick() {
     let newId = { values: makeid(5) }
     this.setState(prevState => ({ values: [...prevState.values, newId] }))
+    console.log('addClick', this.state.values)
   }
 
+  // TODO: edit here to remove associated state of loans w/removing line
   removeClick(i) {
     let values = [...this.state.values]
     values.splice(i, 1)
     this.setState({ values })
+    console.log('removeClick', this.state.values)
   }
 
   handleSubmit(event) {

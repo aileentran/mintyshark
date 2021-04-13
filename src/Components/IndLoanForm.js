@@ -10,12 +10,13 @@ class IndLoanForm extends Component {
       interestRate: "",
       isSubsidized: false,
       loanAccrued: 0,
-      loanTotal: 0
+      loanTotal: 0,
+      data: this.props.data
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  
+
   handleChange(event) {
     const {name, value, type, checked} = event.target
     type === "checkbox" ? this.setState({ [name] : checked }) : this.setState({ [name] : value })
@@ -25,7 +26,8 @@ class IndLoanForm extends Component {
     event.preventDefault()
     // Calculations for INDIVIDUAL loans
     const disbursementDate = new Date(this.state.disbursementDate)
-    const gradDate = new Date(this.state.gradDate)
+    // TODO: check if gradDate is being passed properly
+    const gradDate = new Date(this.state.data.gradDate)
     const diffInTime = gradDate.getTime() - disbursementDate.getTime()
     const diffInDays = diffInTime / (1000 * 3600 * 24)
 
