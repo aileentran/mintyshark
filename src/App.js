@@ -8,6 +8,8 @@ function App() {
     <main>
       <header>MintyShark 🦈🔮</header>
       <LoanForm />
+      {/* TODO: add calculations component */}
+      <footer>Things are afoot!</footer>
     </main>
   );
 }
