@@ -17,7 +17,7 @@ class LoanForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      values: [{ values: makeid(5) }],
+      values: [{ id: makeid(5) }],
       totalAccrued: 0,
       total: 0,
       gradDate: "",
@@ -34,7 +34,7 @@ class LoanForm extends Component {
   }
 
   addClick() {
-    let newId = { values: makeid(5) }
+    let newId = { id: makeid(5) }
     this.setState(prevState => ({ values: [...prevState.values, newId] }))
     console.log('addClick', this.state.values)
   }
@@ -62,7 +62,8 @@ class LoanForm extends Component {
                 handleChange={this.handleChange}
                 data={this.state}
               />
-              <p>{ele.values}</p>
+              <p>{ele.id}</p>
+              {console.log('In div', this.state.values[i])}
               <input
                 type="button"
                 value="remove"
