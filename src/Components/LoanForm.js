@@ -59,11 +59,11 @@ class LoanForm extends Component {
           {this.state.values.map((ele, i) => (
             <div key={i}>
               <IndLoanForm
+                key={this.state.values[i]}
                 handleChange={this.handleChange}
                 data={this.state}
               />
               <p>{ele.id}</p>
-              {console.log('In div', this.state.values[i])}
               <input
                 type="button"
                 value="remove"

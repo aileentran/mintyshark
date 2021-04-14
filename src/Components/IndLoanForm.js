@@ -11,7 +11,7 @@ class IndLoanForm extends Component {
       isSubsidized: false,
       loanAccrued: 0,
       loanTotal: 0,
-      data: this.props.data
+      data: props.data
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -102,6 +102,7 @@ class IndLoanForm extends Component {
           <p>Amount Borrowed: {this.state.amtBorrowed}</p>
           <p>Disbursement Date: {this.state.disbursementDate}</p>
           <p>Interest Rate: {this.state.interestRate}</p>
+          {console.log('data', this.state.data.values)}
           {console.log(this.state.isSubsidized)}
         </div>
 
